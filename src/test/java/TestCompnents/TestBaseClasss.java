@@ -12,15 +12,14 @@ import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.BeforeClass;
 
 import ObjectRepository.loginPage;
-import ObjectectRepository.loginpage;
-import Utilities.ReaddatafromExternalFile;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import utility.readDatadfromPropertiesFile;
 
 public class TestBaseClasss {
 	public static WebDriver driver;
 	public   loginPage  login;
 	
-	ReaddatafromExternalFile read = new ReaddatafromExternalFile();
+	readDatadfromPropertiesFile read = new readDatadfromPropertiesFile();
 	public	String baseurl = read.getapplicationurl();
 	public String username = read.getusername();
 	public String password = read.getpassword();

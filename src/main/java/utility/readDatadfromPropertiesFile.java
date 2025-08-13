@@ -12,7 +12,7 @@ Properties prop;
 	{
 		FileReader fr = null;
 		try {
-			fr = new FileReader("C:/Users/eryog/eclipse-workspace/Automation_FrameWork/Configuration/Config.properties");
+			fr = new FileReader("C:/Users/eryog/eclipse-workspace/SwagLabAutomation/configuration/config.properties");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
