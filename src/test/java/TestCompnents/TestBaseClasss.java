@@ -17,46 +17,41 @@ import utility.readDatadfromPropertiesFile;
 
 public class TestBaseClasss {
 	public static WebDriver driver;
-	public   loginPage  login;
-	
+	public loginPage login;
+
 	readDatadfromPropertiesFile read = new readDatadfromPropertiesFile();
-	public	String baseurl = read.getapplicationurl();
+	public String baseurl = read.getapplicationurl();
 	public String username = read.getusername();
 	public String password = read.getpassword();
 
-@BeforeClass
+	@BeforeClass
 	public WebDriver setupmethod() {
-//		System.setProperty("webdriver.chrome.driver",
-//				"C:/Users/eryog/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe");
-//		ChromeOptions co = new ChromeOptions();
-//		co.addArguments("--remote-allow=origins=*");
-//		co.setBinary("C:/Users/eryog/Downloads/chrome-win64/chrome-win64/chrome.exe");
+ 
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		
 		return driver;
 	}
 
-public String getscreenshot(String testCaseName , WebDriver driver)
-{
-	File obj=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-	
-try {
-	FileHandler.copy(obj, new File("C:/Users/eryog/OneDrive/Desktop/Images.jpg"));
-} catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
-//	FileHandler.copy(obj, new File("user.dir")+"//reports"+testCaseName+".png");
-return testCaseName;
+	public String getscreenshot(String testCaseName, WebDriver driver) {
+		File obj = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-}
-   public loginPage launchApplication() {
-	   driver= setupmethod();
-	   login = new loginPage(driver);
-	   login.goTo();
-	   return login;
-   }
+		try {
+			FileHandler.copy(obj, new File("C:/Pooja Kolte/army.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//	FileHandler.copy(obj, new File("user.dir")+"//reports"+testCaseName+".png");
+		return testCaseName;
+
+	}
+
+	public loginPage launchApplication() {
+		driver = setupmethod();
+		login = new loginPage(driver);
+		login.goTo();
+		return login;
+	}
 }

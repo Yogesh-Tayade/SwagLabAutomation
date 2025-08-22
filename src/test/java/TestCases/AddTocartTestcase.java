@@ -1,11 +1,12 @@
 package TestCases;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import ObjectRepository.AddtoCartpage;
 import ObjectRepository.loginPage;
 import TestCompnents.TestBaseClasss;
-
+@Listeners(TestCompnents.Listener.class) 
 public class AddTocartTestcase extends TestBaseClasss {
 
 	@Test
