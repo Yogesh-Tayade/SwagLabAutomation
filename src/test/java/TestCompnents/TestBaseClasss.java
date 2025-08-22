@@ -8,6 +8,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.BeforeClass;
 
@@ -26,7 +27,9 @@ public class TestBaseClasss {
 
 	@BeforeClass
 	public WebDriver setupmethod() {
- 
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-save-password-bubble");
+		options.addArguments("--disable-notifications");
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -35,17 +38,16 @@ public class TestBaseClasss {
 	}
 
 	public String getscreenshot(String testCaseName, WebDriver driver) {
-		File obj = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	    File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	    String destinationPath = System.getProperty("user.dir") + "/reports/" + testCaseName + ".png";
 
-		try {
-			FileHandler.copy(obj, new File("C:/Pooja Kolte/army.jpg"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-//	FileHandler.copy(obj, new File("user.dir")+"//reports"+testCaseName+".png");
-		return testCaseName;
+	    try {
+	        FileHandler.copy(srcFile, new File(destinationPath));
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 
+	    return destinationPath; // ✅ return full path, not just testCaseName
 	}
 
 	public loginPage launchApplication() {
